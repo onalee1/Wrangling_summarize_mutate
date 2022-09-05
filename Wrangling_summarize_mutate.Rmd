@@ -1,0 +1,150 @@
+---
+title: "Data Wrangling - Part II"
+subtitle: "StatPREP R Workshops"
+author: "Your Name here"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Don't forget to load your libraries
+library(tidyverse)
+library(ggplot2movies)
+library(ggformula)
+```
+
+```{r}
+# This loads the data from the ggplot2movies package
+data(movies)
+```
+
+# Deriving information
+
+So far, you have learned "verbs" for isolating data, `select`, `filter`, `arrange`. Now, we will learn verbs for deriving information, `summarize`, and `mutate`. There is an additional verb, `group_by`, which is useful in conjunction with these verbs, but not as much on its own. 
+
+## summarize
+
+Summarize is a many-to-one or many-to-few operation. It summarizes the dataset down to fewer numbers. 
+
+Let's say we want to know the average budget of the movies in the `movies` dataset. The way to compute that is with summarize,
+
+```{r}
+movies %>%
+  summarize(mean(budget))
+```
+
+Unfortunately, there are many missing (or Not Available) values in `budget`, so we need to remove those in our pipeline.
+
+```{r}
+movies %>%
+  drop_na(budget) %>%
+  summarize(mean(budget))
+```
+
+Notice that this pipeline does not change the `movies` dataset in our environment. The NA values are still present in the data, and the entire dataset is just how it started.  We just `summarize`d the data down to a single number in our Console or RMarkdown document. 
+
+If we want, we can add additional statistics to our `summarize` command,
+
+```{r}
+movies %>%
+  drop_na(budget) %>%
+  summarize(mean(budget), max(budget))
+```
+
+We can also name the statistics we compute, so we could refer to them later.
+
+```{r}
+movies %>%
+  drop_na(budget) %>%
+  summarize(avg_budget = mean(budget), max_budget = max(budget))
+```
+
+### Your turn
+
+Now, you try it! 
+
+- What year was the earliest movie in the dataset released? 
+- What is the average length of movies?
+- What is the standard deviation of length?
+
+You may want to look at the "data transformation with dplyr" cheatsheet to review some possible summary functions. 
+
+```{r eval=FALSE}
+movies %>%
+  summarize(# fill in some commands here!)
+```
+
+## group_by
+
+The `group_by` function groups cases by common values. 
+
+This is useful if want to compute summary statistics by group. For example, we may be interested in whether action movies are longer than non-action movies. 
+
+We already know how to compute the average length of movies overall. What we need to add to our pipeline is a `group_by`
+
+```{r eval=FALSE}
+movies %>%
+  group_by(Action) %>%
+  # move your summarize code from the last exercise here!
+```
+
+Which movies are longer, action movies or non-action movies? 
+
+### Your turn
+
+Investigate the movies classified as Short. Are they actually shorter than other movies? 
+
+- What is the average length? 
+- What is the minimum length?
+
+```{r eval=FALSE}
+movies %>%
+  group_by(# fill in some commands here!) %>%
+  summarize(# fill in some commands here!)
+```
+
+
+## mutate
+
+The `mutate` function creates new variables (columns) in the dataset. Typically, we use it to make new variables from old ones. 
+
+For example, we may be interested in the length of movies in hours, rather than in minutes. 
+
+```{r}
+movies <- movies %>%
+  mutate(length_hrs = length / 60)
+```
+
+Let's read this code carefully. 
+
+- what does the `<-` do?
+- why are we writing `/60`?
+- what does the `=` do?
+- why did we use the name `length_hrs`?
+
+### Your turn
+
+The variables `r1`, `r2`, ..., `r10` give you the percent of people who rated that movie a 1, 2, ..., 10. We would like to know the percent of people who rated the movie a 4 or less (i.e., who rated it a 1, 2, 3, or 4). Create a new variable called `per_low` that computes that number.
+
+```{r eval=FALSE}
+movies <- movies %>%
+  mutate(per_low = # fill in some commands here!)
+```
+
+## Putting it together
+
+Now that we have a bunch of wrangling skills, let's put them together. 
+
+- pull out the movies that had a high percent of low ratings (Hint: what command will you use to do this?)
+- pull out movies that had a high percent of low ratings *and* more than 5 votes. 
+- how many of these bad movies were there?
+
+To accomplish that last task, we need a specialty function, `n`. Here's how it works
+
+```{r}
+movies %>%
+  summarize(n())
+```
+
+- what is the average length of movies in the dataset, in hours? 
+- can you find a second way to compute the average length, by flipping the order of commands (i.e., `summarize` first and then `mutate`)?
+
