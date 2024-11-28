@@ -97,6 +97,7 @@ Which movies are longer, action movies or non-action movies?
 
 On average Action movies are seen to be longer with run times of about 100 minutes compared to non-action movies having run times of about 81 minutes. The standard deviation also shows the difference between the two as it is lower with the Action movies eaning more the movies computed are  closer to 100 minutes while non-action movies vary more on run time.
 
+#Question 3
 ### Your turn
 
 Investigate the movies classified as Short. Are they actually shorter than other movies? 
@@ -111,6 +112,7 @@ movies_ln99<-movies %>%
 movies_ln99
 ```
 
+Short movies have a average length of close to 14 minutes, while non-short movies have an average length of about 95 minutes. Interestingly enough, Short and non-short movies have the same lowest run time for lowest length of a movie, both being 1 minute as the minimum length of a movie.
 
 ## mutate
 
