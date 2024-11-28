@@ -68,9 +68,10 @@ Now, you try it!
 
 You may want to look at the "data transformation with dplyr" cheatsheet to review some possible summary functions. 
 
-```{r eval=FALSE}
-movies %>%
-  summarize(# fill in some commands here!)
+```{r eval=TRUE}
+movies_lin71<-movies %>%
+  summarize(mean(length),sd(length),min(year))
+movies_lin71
 ```
 
 ## group_by
