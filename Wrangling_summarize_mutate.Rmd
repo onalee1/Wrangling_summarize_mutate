@@ -73,8 +73,10 @@ movies_lin71<-movies %>%
   summarize(mean(length),sd(length),min(year))
 movies_lin71
 ```
+
 The oldest movies on this list are movies made in 1893. The average length of movies is 82 minutes and about 34 seconds. Although there is a standard deviation of 44 minutes and about 35 seconds. 
 
+#Question 2
 ## group_by
 
 The `group_by` function groups cases by common values. 
@@ -92,6 +94,8 @@ movies_ln84
 ```
 
 Which movies are longer, action movies or non-action movies? 
+
+On average Action movies are seen to be longer with run times of about 100 minutes compared to non-action movies having run times of about 81 minutes. The standard deviation also shows the difference between the two as it is lower with the Action movies eaning more the movies computed are  closer to 100 minutes while non-action movies vary more on run time.
 
 ### Your turn
 
