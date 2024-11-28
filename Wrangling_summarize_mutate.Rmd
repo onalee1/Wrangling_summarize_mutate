@@ -125,12 +125,16 @@ movies <- movies %>%
   mutate(length_hrs = length / 60)
 ```
 
+#Question 4
+
 Let's read this code carefully. 
 
 - what does the `<-` do?
 - why are we writing `/60`?
 - what does the `=` do?
 - why did we use the name `length_hrs`?
+
+  The "<-" operator is used to assigns the value on the right to the variable on the left. The "/60" is typically used to convert minutes into hours, as there are 60 minutes in an hour. The Role of "=" is also used to assign the value of the correct answer or value on the right to the variable on the left, and last the name "length_hrs" likely indicates that the variable represents a length of time measured in hours, providing clarity and context within the code.
 
 ### Your turn
 
