@@ -57,7 +57,7 @@ movies %>%
   drop_na(budget) %>%
   summarize(avg_budget = mean(budget), max_budget = max(budget))
 ```
-
+#Question 1
 ### Your turn
 
 Now, you try it! 
@@ -73,6 +73,7 @@ movies_lin71<-movies %>%
   summarize(mean(length),sd(length),min(year))
 movies_lin71
 ```
+The oldest movies on this list are movies made in 1893. The average length of movies is 82 minutes and about 34 seconds. Although there is a standard deviation of 44 minutes and about 35 seconds. 
 
 ## group_by
 
