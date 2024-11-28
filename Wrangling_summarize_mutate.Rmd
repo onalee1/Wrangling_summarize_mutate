@@ -81,10 +81,12 @@ This is useful if want to compute summary statistics by group. For example, we m
 
 We already know how to compute the average length of movies overall. What we need to add to our pipeline is a `group_by`
 
-```{r eval=FALSE}
-movies %>%
+```{r eval=TRUE}
+movies_ln84<-movies %>%
   group_by(Action) %>%
+  summarize(mean(length),sd(length),min(year))
   # move your summarize code from the last exercise here!
+movies_ln84
 ```
 
 Which movies are longer, action movies or non-action movies? 
