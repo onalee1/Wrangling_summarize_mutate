@@ -136,7 +136,7 @@ Let's read this code carefully.
 
   The "<-" operator is used to assigns the value on the right to the variable on the left. The "/60" is typically used to convert minutes into hours, as there are 60 minutes in an hour. The Role of "=" is also used to assign the value of the correct answer or value on the right to the variable on the left, and last the name "length_hrs" likely indicates that the variable represents a length of time measured in hours, providing clarity and context within the code.
 
-### Your turn
+###
 
 The variables `r1`, `r2`, ..., `r10` give you the percent of people who rated that movie a 1, 2, ..., 10. We would like to know the percent of people who rated the movie a 4 or less (i.e., who rated it a 1, 2, 3, or 4). Create a new variable called `per_low` that computes that number.
 
@@ -146,21 +146,24 @@ movies_ln128 <- movies %>%
 movies_ln128
 ```
 
-## Putting it together
+#Question 5
 
 Now that we have a bunch of wrangling skills, let's put them together. 
-
 - pull out the movies that had a high percent of low ratings (Hint: what command will you use to do this?)
 - pull out movies that had a high percent of low ratings *and* more than 5 votes. 
 - how many of these bad movies were there?
 
 To accomplish that last task, we need a specialty function, `n`. Here's how it works
 
-```{r eval=TRUE}
-movies_ln144 <- movies %>%
-  mutate(per_low = r1+r2+r3+r4)
+```{r}
+movies_ln144<-movies_ln128 %>%
+  filter(per_low > 50 & votes > 5)%>%
+  select(per_low,votes,title) %>%
+  summarize(Bdmvs = n())
 movies_ln144
 ```
+
+4,753 movies have a high percent of low ratings with a vote greater than 5.
 
 - what is the average length of movies in the dataset, in hours? 
 - can you find a second way to compute the average length, by flipping the order of commands (i.e., `summarize` first and then `mutate`)?
