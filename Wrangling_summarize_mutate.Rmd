@@ -140,9 +140,10 @@ Now that we have a bunch of wrangling skills, let's put them together.
 
 To accomplish that last task, we need a specialty function, `n`. Here's how it works
 
-```{r}
-movies %>%
-  summarize(n())
+```{r eval=TRUE}
+movies_ln144 <- movies %>%
+  mutate(per_low = r1+r2+r3+r4)
+movies_ln144
 ```
 
 - what is the average length of movies in the dataset, in hours? 
