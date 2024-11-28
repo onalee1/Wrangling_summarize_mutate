@@ -165,6 +165,24 @@ movies_ln144
 
 4,753 movies have a high percent of low ratings with a vote greater than 5.
 
+#side Questions
+
 - what is the average length of movies in the dataset, in hours? 
 - can you find a second way to compute the average length, by flipping the order of commands (i.e., `summarize` first and then `mutate`)?
+
+```{r}
+average_length_hours <- movies %>%
+summarize(average_length = mean(length)) %>%
+mutate(average_length_hours_summarize = average_length / 60)
+
+average_length_hours_flipped <- movies %>%
+mutate(length_hours = length / 60) %>%
+summarize(average_length_hours_mutate = mean(length_hours))
+
+average_length_hours
+average_length_hours_flipped
+
+```
+
+Flipping both data sets of mutate and summarize was able to be done as seen by the new data sets of average_length_hours and average _length_hours_flipped. I would say using mutate first leads to a more straight forward answer as it give us the average length in hours right away when we need it but using summarize first then mutate shows the process that lead to the data which has its uses for tracking progression.
 
